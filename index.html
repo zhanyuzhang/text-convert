@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="keywords" content="中文转换器">
+  <meta name="description" content="">
+  <meta name="author" content="网易，NetEase Inc.">
+  <meta name="copyright" content="网易，NetEase Inc.">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>在线文字转换器_简体_繁体_火星文</title>
+  <style>
+    .form-control:hover {
+      border: 1px solid #66be8c;
+    }
+    textarea.form-control {
+      padding: 0 10px;
+      width: 90%;
+      margin: 0 auto;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      box-sizing: content-box;
+      display: block;
+      padding: 6px 12px;
+      font-size: 14px;
+      /* color: ; */
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    }
+
+    .toolbar {
+      padding: 1em 0;
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 6px 12px;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.42857143;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      background-image: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      margin: 0.5em 0;
+    }
+
+    .btn-success {
+      color: #fff;
+      background-color: #5cb85c;
+      border-color: #4cae4c;
+    }
+
+    .btn-danger {
+      color: #fff;
+      background-color: #d9534f;
+      border-color: #d43f3a;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <textarea class="form-control" id="txt" name="txt" rows="10" placeholder="温馨提示：支持简体字、繁体字和火星文的相互转换"></textarea>
+    <div class="toolbar">
+      <!-- <button type="button" class="btn btn-success to-simple">转为简体</button> -->
+      <button type="button" class="btn btn-success convert" data-type="1">简转繁</button>
+      <button type="button" class="btn btn-success convert" data-type="2">繁转简</button>
+      <button type="button" class="btn btn-success convert" data-type="3">简转火</button>
+      <button type="button" class="btn btn-success convert" data-type="4">火转简</button>
+      <button type="button" class="btn btn-success convert" data-type="5">繁转火</button>
+      <button type="button" class="btn btn-success convert" data-type="6">火转繁</button>
+      <button type="button" class="btn btn-danger clear">清空</button>
+    </div>
+  </div>
+  <script src="./convert.js"></script>
+  <script>
+    let textarea = document.getElementById('txt');
+    document.getElementById('app').addEventListener('click', function(e) {
+      let target = e.target;
+      let classList = target.classList;
+      // 转换
+      if(classList.contains('convert')) {
+        let type = target.dataset.type;
+        let words = textarea.value;
+        textarea.value = convert(words, type);
+      // 清空
+      } else if(classList.contains('clear')) {
+        textarea.value = '';
+        // 复制
+      }
+    }, false);
+  </script>
+ </body>
+</html>
