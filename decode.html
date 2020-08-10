@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decode Unicode</title>
+  <style>
+    textarea {
+      width: 45vw;
+      height: 90vh;
+    }
+  </style>
+</head>
+<body>
+  <textarea name="" id="input" cols="30" rows="10"></textarea>
+  <textarea name="" id="output" cols="30" rows="10"></textarea>
+  <div>
+    <button id="decode">转码</button>
+  </div>
+  <script>
+    var input = document.getElementById('input');
+    var output = document.getElementById('output');
+    var decode = document.getElementById('decode');
+
+    decode.onclick = function() {
+      try {
+        var value = input.value;
+        output.value = JSON.stringify(JSON.parse(value), null, 2);
+      } catch(err) {
+        alert(err.message);
+      }
+    }
+  </script>
+</body>
+</html>
